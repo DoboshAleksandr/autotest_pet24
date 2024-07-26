@@ -27,5 +27,5 @@ class BasketPage(Base):
     # Methods
     def go_to_order_page(self):
         self.get_current_url()
-        self.click_checkout()
+        self.click_checkout()                       # Переход в режим оформления заказа
 

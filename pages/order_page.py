@@ -1,5 +1,4 @@
 import re
-import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -124,20 +123,20 @@ class OrderPage(Base):
 
 
 
-
     # Methods
     """Заполнение всех обязательных полей КРОМЕ ТЕЛЕФОНА, чтобы заказ не был оформлен. Ведь сайт не является тестовым"""
     def formalization_order(self):
-        self.get_current_url()
-        self.input_name()
-        self.input_mail()
-        self.click_day()
-        self.select_data_day()
-        self.select_delivery_date_fact()
-        self.input_city()
-        self.input_street()
-        self.input_house()
-        self.input_apartment()
-        self.click_radio_payment()
-        self.click_checkout_finish()
-
+        self.get_current_url()                                         # отображение текущей url
+        self.input_name()                                              # ввод имени
+        self.input_mail()                                              # ввод почты
+        self.click_day()                                               # клик по дате доставки, ожидаемая доставка
+        self.select_data_day()                                         # сохранение даты доставки в виде текста
+        self.select_delivery_date_fact()                               # проверка, что при выбранной дате доставке в другом поле отображается такая же дата
+        self.get_screenshot()
+        self.input_city()                                              # ввод города
+        self.input_street()                                            # ввод улицы
+        self.input_house()                                             # ввод дома
+        self.input_apartment()                                         # ввод кв
+        self.click_radio_payment()                                     # выбор способа оплаты
+        self.click_checkout_finish()                                   # нажатие на кнопку "Оформить заказ"
+        self.get_screenshot()

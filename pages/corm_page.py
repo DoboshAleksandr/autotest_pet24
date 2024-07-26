@@ -8,13 +8,10 @@ from base.base_class import Base
 
 
 class CormPage(Base):         # потомок класса Base
-    """В данном классе выбирается категория товаров (например корм, консервы, шампуни)"""
+    """На данной странице можно отфильтровать товары категории - Сухой корм"""
 
-    # def __init__(self, driver):
-    #         super().__init__(driver)  # помощью super мы указываем, что это потомок
-    #         self.driver = driver
 
-#Locators (локаторы элементов, которые находятся на странице Авторизации)
+    #Locators (локаторы элементов, которые находятся на странице)
     min_price = "//input[@id='arrFilter_P1_MIN']"
     max_price = "//input[@id='arrFilter_P1_MAX']"
     discount = "//label[contains(text(), 'ДА')]"
@@ -24,11 +21,8 @@ class CormPage(Base):         # потомок класса Base
     corm_product = "(//div[@class='product-name'])[1]"
 
 
+    #Getters - методы, которые будут осуществлять поиск элементов, по локаторам, используя определенные условия поиска и возвращающие результат данного поиска.
 
-
-    #Getters
-    # - методы, которые будут осуществлять поиск элементов, по локаторам, используя определенные условия поиска,
-# и возвращающие результат данного поиска.
     def get_min_price(self):
         return WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, self.min_price)))
 
@@ -51,7 +45,7 @@ class CormPage(Base):         # потомок класса Base
         return WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, self.corm_product)))
 
 
-        # Actions
+    # Actions
     def select_min_price(self):
         self.get_min_price().click()
         self.get_min_price().clear()
@@ -104,17 +98,22 @@ class CormPage(Base):         # потомок класса Base
         time.sleep(2)
 
 
-
     # Methods
     def corm_filter(self):
         self.get_current_url()
-        self.select_min_price()
-        self.select_max_price()
-        self.select_discount()
-        self.select_brand1()
-        self.select_brand2()
-        self.select_ingredients()
-        self.select_corm_product()
+        self.select_min_price()                  #выбрана минимальная цена
+        self.select_max_price()                  #выбрана максимальная цена
+        self.select_discount()                   #выбрать чек-бокс "товары со скидкой"
+        self.select_brand1()                     #товары бренда 1
+        self.select_brand2()                     #товары бренда 2
+        self.select_ingredients()                #товары с ингредиентом - Курица/птица
+        self.select_corm_product()               #Переход на страницу товара
+
+
+
+
+
+
 
 
 
