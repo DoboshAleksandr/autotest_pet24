@@ -46,5 +46,5 @@ def test_buy_corm_for_cats():
     op.formalization_order()                            # оформление товара, ввод персональных данных киента, выбо дата доставки, выбор способа оплаты
 
     print("Finish Test 1")
-    time.sleep(60)
-    driver.quit()                                       # закроется страница браузера
+    # time.sleep(60)
+    # driver.quit()           # закроется страница браузера

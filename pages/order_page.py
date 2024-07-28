@@ -58,13 +58,13 @@ class OrderPage(Base):
 
 
     # Actions
-    def input_name(self):
+    def input_name(self, name):
         self.get_name().click()
-        self.get_name().send_keys("Пупкин Виталий Игоревич")
+        self.get_name().send_keys(name)
 
-    def input_mail(self):
+    def input_mail(self, mail):
         self.get_mail().click()
-        self.get_mail().send_keys("fdhfghf@mail.ru")
+        self.get_mail().send_keys(mail)
         self.driver.execute_script("window.scrollTo(0, 300);")
 
     def click_day(self):
@@ -92,21 +92,21 @@ class OrderPage(Base):
             print(
                 f"Курьер не сможет привезти заказ сегодня, самая ближайшая дата доставки, которую удалось выбрать - {self.value_date_fact}")
 
-    def input_city(self):
+    def input_city(self, city):
         self.get_city().click()
-        self.get_city().send_keys("Санкт-Петербург")
+        self.get_city().send_keys(city)
 
-    def input_street(self):
+    def input_street(self, street):
         self.get_street().click()
-        self.get_street().send_keys("Ленина")
+        self.get_street().send_keys(street)
 
-    def input_house(self):
+    def input_house(self, house):
         self.get_house().click()
-        self.get_house().send_keys("2")
+        self.get_house().send_keys(house)
 
-    def input_apartment(self):
+    def input_apartment(self, apartment):
         self.get_apartment().click()
-        self.get_apartment().send_keys("26")
+        self.get_apartment().send_keys(apartment)
         self.driver.execute_script("window.scrollTo(0, 500);")
 
     def click_radio_payment(self):
@@ -126,17 +126,17 @@ class OrderPage(Base):
     # Methods
     """Заполнение всех обязательных полей КРОМЕ ТЕЛЕФОНА, чтобы заказ не был оформлен. Ведь сайт не является тестовым"""
     def formalization_order(self):
-        self.get_current_url()                                         # отображение текущей url
-        self.input_name()                                              # ввод имени
-        self.input_mail()                                              # ввод почты
-        self.click_day()                                               # клик по дате доставки, ожидаемая доставка
-        self.select_data_day()                                         # сохранение даты доставки в виде текста
-        self.select_delivery_date_fact()                               # проверка, что при выбранной дате доставке в другом поле отображается такая же дата
+        self.get_current_url()                                              # отображение текущей url
+        self.input_name("Пупкин Виталий Игоревич")                          # ввод имени
+        self.input_mail("fdhfghf@mail.ru")                                  # ввод почты
+        self.click_day()                                                    # клик по дате доставки, ожидаемая доставка
+        self.select_data_day()                                              # сохранение даты доставки в виде текста
+        self.select_delivery_date_fact()                                    # проверка, что при выбранной дате доставке в другом поле отображается такая же дата
         self.get_screenshot()
-        self.input_city()                                              # ввод города
-        self.input_street()                                            # ввод улицы
-        self.input_house()                                             # ввод дома
-        self.input_apartment()                                         # ввод кв
-        self.click_radio_payment()                                     # выбор способа оплаты
-        self.click_checkout_finish()                                   # нажатие на кнопку "Оформить заказ"
+        self.input_city("Санкт-Петербург")                                  # ввод города
+        self.input_street("Ленина")                                         # ввод улицы
+        self.input_house("2")                                               # ввод дома
+        self.input_apartment("26")                                          # ввод кв
+        self.click_radio_payment()                                          # выбор способа оплаты
+        self.click_checkout_finish()                                        # нажатие на кнопку "Оформить заказ"
         self.get_screenshot()

@@ -10,13 +10,13 @@ class FillersPage(Base):         # потомок класса Base
     """На данной странице можно отфильтровать товары категории - Наполнители"""
 
 
-    #Locators (локаторы элементов, которые находятся на странице)
+    #Locators
     brand_fillers_1 = "//label[contains(text(), 'Proline ')]"
     brand_fillers_2 = "//label[contains(text(), 'CATRON ')]"
     fillers_product = "(//div[@class='product-name'])[1]"
 
 
-    #Getters - методы, которые будут осуществлять поиск элементов, по локаторам, используя определенные условия поиска и возвращающие результат данного поиска.
+    #Getters
 
     def get_brand_fillers_1(self):
         return WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, self.brand_fillers_1)))

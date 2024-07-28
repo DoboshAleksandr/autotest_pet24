@@ -11,7 +11,7 @@ class CormPage(Base):         # потомок класса Base
     """На данной странице можно отфильтровать товары категории - Сухой корм"""
 
 
-    #Locators (локаторы элементов, которые находятся на странице)
+    #Locators
     min_price = "//input[@id='arrFilter_P1_MIN']"
     max_price = "//input[@id='arrFilter_P1_MAX']"
     discount = "//label[contains(text(), 'ДА')]"
@@ -21,7 +21,7 @@ class CormPage(Base):         # потомок класса Base
     corm_product = "(//div[@class='product-name'])[1]"
 
 
-    #Getters - методы, которые будут осуществлять поиск элементов, по локаторам, используя определенные условия поиска и возвращающие результат данного поиска.
+    #Getters
 
     def get_min_price(self):
         return WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, self.min_price)))

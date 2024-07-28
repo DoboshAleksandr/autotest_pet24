@@ -20,7 +20,7 @@ class ProductPage(Base):         # потомок класса Base
     cart = "//a[@class='ownd-header-basket-block hidden-md']"
 
 
-#Getters - методы, которые будут осуществлять поиск элементов, по локаторам, используя определенные условия поиска и возвращающие результат данного поиска.
+#Getters
     def get_header(self):
         return WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, self.header)))
 
