@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class CormPage(Base):         # потомок класса Base
@@ -89,6 +90,8 @@ class CormPage(Base):         # потомок класса Base
         print("Выбраны ингредиент")
         time.sleep(2)
 
+
+
     def select_corm_product(self):
         corm_product_element = self.get_corm_product()
         value_corm_product = corm_product_element.text
@@ -100,6 +103,7 @@ class CormPage(Base):         # потомок класса Base
 
     # Methods
     def corm_filter(self):
+        Logger.add_start_step(method="corm_filter")
         self.get_current_url()
         self.select_min_price()                  #выбрана минимальная цена
         self.select_max_price()                  #выбрана максимальная цена
@@ -108,6 +112,7 @@ class CormPage(Base):         # потомок класса Base
         self.select_brand2()                     #товары бренда 2
         self.select_ingredients()                #товары с ингредиентом - Курица/птица
         self.select_corm_product()               #Переход на страницу товара
+        Logger.add_end_step(url=self.driver.current_url, method="corm_filter")
 
 
 

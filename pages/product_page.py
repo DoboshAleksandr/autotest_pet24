@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class ProductPage(Base):         # потомок класса Base
@@ -93,6 +94,7 @@ class ProductPage(Base):         # потомок класса Base
 
 # Methods
     def select_corm_product(self):
+        Logger.add_start_step(method="select_corm_product")
         self.get_current_url()                  # отображение текущей url
         self.select_header()                    # отображение заголовка товара
         self.select_count_plus()                # увеличиваем количество до трех
@@ -102,11 +104,14 @@ class ProductPage(Base):         # потомок класса Base
         self.assert_price()                     # сравнение ожидаемой цены с фактической
         self.select_basket()                    # товар добавлен в корзину
         self.select_cart()                      # переход в корзину
+        Logger.add_end_step(url=self.driver.current_url, method="select_corm_product")
 
 
     def select_fillers_product(self):
+        Logger.add_start_step(method="select_fillers_product")
         self.get_current_url()                  # отображение текущей url
         self.select_header()                    # отображение заголовка товара
         self.select_total_price()               # итоговая / фактическая цена за наполнитель
         self.select_basket()                    # товар добавлен в корзину
         self.select_cart()                      # переход в корзину
+        Logger.add_end_step(url=self.driver.current_url, method="select_fillers_product")

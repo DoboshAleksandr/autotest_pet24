@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class MainPage(Base):         # потомок класса Base
@@ -31,10 +32,12 @@ class MainPage(Base):         # потомок класса Base
 
 #Methods - метод, содержащий список методов Actions, представленных в виде действий
     def select_animal(self):
+        Logger.add_start_step(method="select_animal")
         self.driver.get(self.url)
         self.driver.maximize_window()
         self.get_current_url()                          #проверка текущй url
         self.click_cats()                               #переход в товары для кошек
+        Logger.add_end_step(url=self.driver.current_url, method="select_animal")
 
 
 

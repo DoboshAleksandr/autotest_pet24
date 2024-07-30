@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class OrderPage(Base):
@@ -126,6 +127,7 @@ class OrderPage(Base):
     # Methods
     """Заполнение всех обязательных полей КРОМЕ ТЕЛЕФОНА, чтобы заказ не был оформлен. Ведь сайт не является тестовым"""
     def formalization_order(self):
+        Logger.add_start_step(method="formalization_order")
         self.get_current_url()                                              # отображение текущей url
         self.input_name("Пупкин Виталий Игоревич")                          # ввод имени
         self.input_mail("fdhfghf@mail.ru")                                  # ввод почты
@@ -140,3 +142,4 @@ class OrderPage(Base):
         self.click_radio_payment()                                          # выбор способа оплаты
         self.click_checkout_finish()                                        # нажатие на кнопку "Оформить заказ"
         self.get_screenshot()
+        Logger.add_end_step(url=self.driver.current_url, method="formalization_order")
