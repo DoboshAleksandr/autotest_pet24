@@ -6,6 +6,7 @@
 - Установить Selenium-WebDriver для Python. Инструкцию смотрим тут: https://selenium-python.com/install-selenium-python .
 - Скачать актуальную для своего браузера Сhrome версию "Сhromedriver". Смотрим тут: https://chromedriver.chromium.org/ .
 - Импортировать библиотеку Pytest .
+- Установить allure (для просмотра отчета о выполнении теста в allure) .
 
 **Краткое описание директорий:**
 - base - директория в которой хранится базовый класс base_class, содержащий основные методы, используемые в разных частях проекта.
