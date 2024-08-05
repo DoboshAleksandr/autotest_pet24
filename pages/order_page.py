@@ -1,5 +1,6 @@
 import re
 
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -127,19 +128,20 @@ class OrderPage(Base):
     # Methods
     """Заполнение всех обязательных полей КРОМЕ ТЕЛЕФОНА, чтобы заказ не был оформлен. Ведь сайт не является тестовым"""
     def formalization_order(self):
-        Logger.add_start_step(method="formalization_order")
-        self.get_current_url()                                              # отображение текущей url
-        self.input_name("Пупкин Виталий Игоревич")                          # ввод имени
-        self.input_mail("fdhfghf@mail.ru")                                  # ввод почты
-        self.click_day()                                                    # клик по дате доставки, ожидаемая доставка
-        self.select_data_day()                                              # сохранение даты доставки в виде текста
-        self.select_delivery_date_fact()                                    # проверка, что при выбранной дате доставке в другом поле отображается такая же дата
-        self.get_screenshot()
-        self.input_city("Санкт-Петербург")                                  # ввод города
-        self.input_street("Ленина")                                         # ввод улицы
-        self.input_house("2")                                               # ввод дома
-        self.input_apartment("26")                                          # ввод кв
-        self.click_radio_payment()                                          # выбор способа оплаты
-        self.click_checkout_finish()                                        # нажатие на кнопку "Оформить заказ"
-        self.get_screenshot()
-        Logger.add_end_step(url=self.driver.current_url, method="formalization_order")
+        with allure.step("Formalization order"):  # аннотация в отчете allure, того, чтобы мы будем делать
+            Logger.add_start_step(method="formalization_order")
+            self.get_current_url()                                              # отображение текущей url
+            self.input_name("Пупкин Виталий Игоревич")                          # ввод имени
+            self.input_mail("fdhfghf@mail.ru")                                  # ввод почты
+            self.click_day()                                                    # клик по дате доставки, ожидаемая доставка
+            self.select_data_day()                                              # сохранение даты доставки в виде текста
+            self.select_delivery_date_fact()                                    # проверка, что при выбранной дате доставке в другом поле отображается такая же дата
+            self.get_screenshot()
+            self.input_city("Санкт-Петербург")                                  # ввод города
+            self.input_street("Ленина")                                         # ввод улицы
+            self.input_house("2")                                               # ввод дома
+            self.input_apartment("26")                                          # ввод кв
+            self.click_radio_payment()                                          # выбор способа оплаты
+            self.click_checkout_finish()                                        # нажатие на кнопку "Оформить заказ"
+            self.get_screenshot()
+            Logger.add_end_step(url=self.driver.current_url, method="formalization_order")

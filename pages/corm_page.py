@@ -1,5 +1,6 @@
 import time
 
+import allure
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -103,16 +104,17 @@ class CormPage(Base):         # потомок класса Base
 
     # Methods
     def corm_filter(self):
-        Logger.add_start_step(method="corm_filter")
-        self.get_current_url()
-        self.select_min_price()                  #выбрана минимальная цена
-        self.select_max_price()                  #выбрана максимальная цена
-        self.select_discount()                   #выбрать чек-бокс "товары со скидкой"
-        self.select_brand1()                     #товары бренда 1
-        self.select_brand2()                     #товары бренда 2
-        self.select_ingredients()                #товары с ингредиентом - Курица/птица
-        self.select_corm_product()               #Переход на страницу товара
-        Logger.add_end_step(url=self.driver.current_url, method="corm_filter")
+        with allure.step("Corm filter"):        #аннотация в отчете allure, того, чтобы мы будем делать
+            Logger.add_start_step(method="corm_filter")
+            self.get_current_url()
+            self.select_min_price()                  #выбрана минимальная цена
+            self.select_max_price()                  #выбрана максимальная цена
+            self.select_discount()                   #выбрать чек-бокс "товары со скидкой"
+            self.select_brand1()                     #товары бренда 1
+            self.select_brand2()                     #товары бренда 2
+            self.select_ingredients()                #товары с ингредиентом - Курица/птица
+            self.select_corm_product()               #Переход на страницу товара
+            Logger.add_end_step(url=self.driver.current_url, method="corm_filter")
 
 
 

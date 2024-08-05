@@ -1,5 +1,6 @@
 import time
 
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -27,9 +28,10 @@ class BasketPage(Base):
 
     # Methods
     def go_to_order_page(self):
-        Logger.add_start_step(method="go_to_order_page")
-        self.get_current_url()
-        self.click_checkout()                       # Переход в режим оформления заказа
-        Logger.add_end_step(url=self.driver.current_url, method="go_to_order_page")
+        with allure.step("Go to order page"):  # аннотация в отчете allure, того, чтобы мы будем делать
+            Logger.add_start_step(method="go_to_order_page")
+            self.get_current_url()
+            self.click_checkout()                       # Переход в режим оформления заказа
+            Logger.add_end_step(url=self.driver.current_url, method="go_to_order_page")
 
 

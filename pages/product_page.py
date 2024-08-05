@@ -1,5 +1,6 @@
 import re
 
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -94,24 +95,26 @@ class ProductPage(Base):         # потомок класса Base
 
 # Methods
     def select_corm_product(self):
-        Logger.add_start_step(method="select_corm_product")
-        self.get_current_url()                  # отображение текущей url
-        self.select_header()                    # отображение заголовка товара
-        self.select_count_plus()                # увеличиваем количество до трех
-        self.select_count_minus()               # уменьшаем количество до двух
-        self.select_price_small()               # значение цены за маленькую упаковку товара, умножаем цену на 2 и узнаем цену за 2 товара - это Ожидаемая цена
-        self.select_total_price()               # итоговая / фактическая цена за корм
-        self.assert_price()                     # сравнение ожидаемой цены с фактической
-        self.select_basket()                    # товар добавлен в корзину
-        self.select_cart()                      # переход в корзину
-        Logger.add_end_step(url=self.driver.current_url, method="select_corm_product")
+        with allure.step("Select corm product"):  # аннотация в отчете allure, того, чтобы мы будем делать
+            Logger.add_start_step(method="select_corm_product")
+            self.get_current_url()                  # отображение текущей url
+            self.select_header()                    # отображение заголовка товара
+            self.select_count_plus()                # увеличиваем количество до трех
+            self.select_count_minus()               # уменьшаем количество до двух
+            self.select_price_small()               # значение цены за маленькую упаковку товара, умножаем цену на 2 и узнаем цену за 2 товара - это Ожидаемая цена
+            self.select_total_price()               # итоговая / фактическая цена за корм
+            self.assert_price()                     # сравнение ожидаемой цены с фактической
+            self.select_basket()                    # товар добавлен в корзину
+            self.select_cart()                      # переход в корзину
+            Logger.add_end_step(url=self.driver.current_url, method="select_corm_product")
 
 
     def select_fillers_product(self):
-        Logger.add_start_step(method="select_fillers_product")
-        self.get_current_url()                  # отображение текущей url
-        self.select_header()                    # отображение заголовка товара
-        self.select_total_price()               # итоговая / фактическая цена за наполнитель
-        self.select_basket()                    # товар добавлен в корзину
-        self.select_cart()                      # переход в корзину
-        Logger.add_end_step(url=self.driver.current_url, method="select_fillers_product")
+        with allure.step("Select fillers product"):  # аннотация в отчете allure, того, чтобы мы будем делать
+            Logger.add_start_step(method="select_fillers_product")
+            self.get_current_url()                  # отображение текущей url
+            self.select_header()                    # отображение заголовка товара
+            self.select_total_price()               # итоговая / фактическая цена за наполнитель
+            self.select_basket()                    # товар добавлен в корзину
+            self.select_cart()                      # переход в корзину
+            Logger.add_end_step(url=self.driver.current_url, method="select_fillers_product")

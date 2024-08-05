@@ -1,5 +1,6 @@
 import time
 
+import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
@@ -13,7 +14,7 @@ from pages.product_page import ProductPage
 
 
 
-
+@allure.description("Test buy corm for cats")   #аннотация в отчете allure, того, чтобы мы будем делать
 def test_buy_fillers_for_cats():
 #     """Тест по покупке товара включает в себя: выбор товара, заполнение данных получателя, подтверждение покупки."""
     options = webdriver.ChromeOptions()

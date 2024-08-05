@@ -1,5 +1,5 @@
 import time
-
+import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
@@ -13,6 +13,7 @@ from pages.product_page import ProductPage
 
 
 # @pytest.mark.run(order=1)
+@allure.description("Test buy corm for cats")   #аннотация в отчете allure, того, чтобы мы будем делать
 def test_buy_corm_for_cats():
     """Тест по покупке товара включает в себя (в кратце): выбор категории питомца(кошки), выбор раздела товоров(кормы), фильтрацию товаров, выбор товара, добавление его в корзину, оформление покупки."""
     """ПРИМЕЧАНИЕ: при оформлении заказа будет специально не заполнено поле с номером телефона, чтобы заказ не был оформлен, поскольку сайт не является тестовым"""

@@ -1,5 +1,6 @@
 import time
 
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -53,12 +54,13 @@ class FillersPage(Base):         # потомок класса Base
 
     # Methods
     def fillers_filter(self):
-        Logger.add_start_step(method="fillers_filter")
-        self.get_current_url()
-        self.select_brand_fillers_1()                  #показать товары бренда1
-        self.select_brand_fillers_2()                  #показать товары бренда1
-        self.select_fillers_product()                  #перейти на страницу выбранного товара
-        Logger.add_end_step(url=self.driver.current_url, method="fillers_filter")
+        with allure.step("Fillers filter"):  # аннотация в отчете allure, того, чтобы мы будем делать
+            Logger.add_start_step(method="fillers_filter")
+            self.get_current_url()
+            self.select_brand_fillers_1()                  #показать товары бренда1
+            self.select_brand_fillers_2()                  #показать товары бренда1
+            self.select_fillers_product()                  #перейти на страницу выбранного товара
+            Logger.add_end_step(url=self.driver.current_url, method="fillers_filter")
 
 
 
